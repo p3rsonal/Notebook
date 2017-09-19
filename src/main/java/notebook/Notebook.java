@@ -11,8 +11,8 @@ public class Notebook {
     private List<Record> records = new ArrayList<>();
 
     @Command
-    public void create(String firstName, String lastName, String email, String gender, String ... phones) {
-        Record r = new Record();
+    public void createPerson (String firstName, String lastName, String email, String gender, String ... phones) {
+        Person r = new Person();
         r.setFirstName(firstName);
         r.setLastName(lastName);
         r.setEmail(email);
@@ -37,5 +37,22 @@ public class Notebook {
             }
         }
 
+    }
+
+    @Command
+    public void createNote (String text) {
+        Note a = new Note();
+        a.setText(text);
+
+        records.add(a);
+    }
+
+    @Command
+    public void createReminder (String text, String time) {
+        Reminder b = new Reminder();
+        b.setText(text);
+        b.setTime(time);
+
+        records.add(b);
     }
 }
