@@ -1,6 +1,9 @@
 package notebook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Record {
 
@@ -11,7 +14,8 @@ public class Record {
     private String lastName;
     private String email;
     private String gender;
-    private String[] phone;
+    //  private String[] phone; massiv - ne luchwij variant, luchwe list
+    private List<String> phones = new ArrayList<>();
 
 
     public Record() {           // alt + insert -> constructor -> select none
@@ -20,7 +24,7 @@ public class Record {
     }
 
 
-   // alt + insert -> getter and setter, videlit vse  (id, firstname, lastname, phone). Zatem udaljaem setId,
+    // alt + insert -> getter and setter, videlit vse  (id, firstname, lastname, phone). Zatem udaljaem setId,
     // tak sdelali eto v counter
 
     public int getId() {
@@ -43,13 +47,15 @@ public class Record {
         this.lastName = lastName;
     }
 
-    public String[] getPhone() {
-        return phone;
+    public List<String> getPhones() {
+        return phones;
     }
 
-    public void setPhone(String ... phone) {
-        this.phone = phone;
+    public void addPhones(String... phones) {
+        Collections.addAll(this.phones, phones);
     }
+
+// getter i setter dlja kolekcii uzhe ne nuzhen
 
     public String getEmail() {
         return email;
@@ -77,7 +83,9 @@ public class Record {
                 ", Last Name='" + lastName + '\'' +
                 ", Email='" + email + '\'' +
                 ", Gender='" + gender + '\'' +
-                ",Phone numbers=" + Arrays.toString(phone) +
-                '}';
+                ", Phone numbers=" + phones + '\'';
     }
+
+
 }
+

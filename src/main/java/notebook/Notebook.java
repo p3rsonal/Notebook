@@ -11,13 +11,13 @@ public class Notebook {
     private List<Record> records = new ArrayList<>();
 
     @Command
-    public void create(String firstName, String lastName, String email, String gender, String ... phone) {
+    public void create(String firstName, String lastName, String email, String gender, String ... phones) {
         Record r = new Record();
         r.setFirstName(firstName);
         r.setLastName(lastName);
         r.setEmail(email);
         r.setGender(gender);
-        r.setPhone(phone);
+        r.addPhones(phones);
         records.add(r);
 
     }
@@ -29,7 +29,13 @@ public class Notebook {
 
     @Command
     public void remove(int id) {
-        records.remove(int id);
+        for (int i=0; i<records.size(); i++) {
+            Record r = records.get(i);
+            if (r.getId() == id) {
+                records.remove(i);
+                break;
+            }
+        }
 
     }
 }
