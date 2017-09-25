@@ -1,13 +1,17 @@
 package notebook;
 
+import asg.cliche.Command;
+import asg.cliche.Param;
+
 public class Reminder extends Note{
     private String time;
 
+    @Command
     public String getTime() {
         return time;
     }
-
-    public void setTime(String time) {
+    @Command
+    public void setTime(@Param(name = "Time") String time) {
         this.time = time;
     }
 
