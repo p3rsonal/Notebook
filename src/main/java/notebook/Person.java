@@ -65,4 +65,28 @@ public class Person extends Note{   //extend -> vsjo shto est v rekord'e, teper 
                 ", Note=' " + getText() + '\'' +
                 ", Phone number(s)=" + phones + '\'';
     }
+
+    @Override
+    public boolean contains(String str) {
+        String firstNameLower = firstName.toLowerCase();
+        String lastNameLower = lastName.toLowerCase();
+        String emailLower = email.toLowerCase();
+
+        if (super.contains(str)) {
+            return true;
+        } else if (lastNameLower.contains(str)) {
+            return true;
+        } else if (firstNameLower.contains(str)) {
+            return true;
+        } else if (emailLower.contains(str)) {
+            return true;
+        } else {
+            for (String p : phones) {
+                if (p.contains(str)) {   // phones - spisok, p - stroka
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

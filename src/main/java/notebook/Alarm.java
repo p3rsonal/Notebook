@@ -3,31 +3,30 @@ package notebook;
 import asg.cliche.Command;
 import asg.cliche.Param;
 
-public class Reminder extends Note implements Expirable {
-    private String time;
+public class Alarm extends Note implements Expirable {
+    private String alarm;
 
     @Command
-    public String getTime() {
-        return time;
-    }
+    public String getAlarm() {return alarm;}
+
     @Command
-    public void setTime(@Param(name = "Time") String time) {this.time = time;}
+    public void setAlarm(@Param(name = "Alarm time") String alarm) {this.alarm = alarm;}
 
     @Override
     public String toString() {
-        return "Reminder{" +
+        return "Alarm{" +
                 "ID=" + getId() +
-                ", Task ='" + getText() + '\'' +
-                ", Time ='" + time + '\'' +
+                ", Alarm Name ='" + getText() + '\'' +
+                ", Alarm Time='" + alarm + '\'' +
                 '}';
     }
 
     @Override
     public boolean contains(String str) {
-        String timeLower = time.toLowerCase();
+        String alarmLower = alarm.toLowerCase();
         if (super.contains(str)) {
             return true;
-        } else if (timeLower.contains(str)) {
+        } else if (alarmLower.contains(str)) {
             return true;
         }
         return false;

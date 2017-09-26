@@ -10,7 +10,7 @@ public class Main {
         Notebook commands = new Notebook();
         Shell shell = ShellFactory.createConsoleShell(
                 "cmd",
-                "Notebook. Saving your contacts.",
+                "Notebook. Saving your contacts.\n Type '?list' to see command list.\n Type 'exit' to quit app.",
                 commands);
         shell.commandLoop();
 

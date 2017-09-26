@@ -13,11 +13,11 @@ public class Notebook implements ShellDependent {
     private Shell parentShell; // need for cliche to allow subshells
 
     @Command
-    public void createPerson (@Param(name = "First Name") String firstName,
-                              @Param(name = "Last Name") String lastName,
-                              @Param(name = "Email") String email,
-                              @Param(name = "Note") String text,
-                              @Param(name = "Phones") String ... phones) {
+    public void createPerson(@Param(name = "First Name") String firstName,
+                             @Param(name = "Last Name") String lastName,
+                             @Param(name = "Email") String email,
+                             @Param(name = "Note") String text,
+                             @Param(name = "Phones") String... phones) {
         Person r = new Person();
         r.setFirstName(firstName);
         r.setLastName(lastName);
@@ -29,13 +29,13 @@ public class Notebook implements ShellDependent {
     }
 
     @Command
-    public List<Record> list()  {
+    public List<Record> list() {
         return records;
     }
 
     @Command
     public void remove(@Param(name = "Id)") int id) {
-        for (int i=0; i<records.size(); i++) {
+        for (int i = 0; i < records.size(); i++) {
             Record r = records.get(i);
             if (r.getId() == id) {
                 records.remove(i);
@@ -46,7 +46,7 @@ public class Notebook implements ShellDependent {
     }
 
     @Command
-    public void createNote (@Param(name = "Note") String text) {
+    public void createNote(@Param(name = "Note") String text) {
         Note a = new Note();
         a.setText(text);
 
@@ -54,13 +54,23 @@ public class Notebook implements ShellDependent {
     }
 
     @Command
-    public void createReminder (@Param(name = "Note") String text,
-                                @Param(name = "Time") String time) {
+    public void createReminder(@Param(name = "Note") String text,
+                               @Param(name = "Time") String time) {
         Reminder b = new Reminder();
         b.setText(text);
         b.setTime(time);
 
         records.add(b);
+    }
+
+    @Command
+    public void createAlarm(@Param(name = "Alarm Name") String text,
+                               @Param(name = "Alarm Time") String alarm) {
+        Alarm f = new Alarm();
+        f.setText(text);
+        f.setAlarm(alarm);
+
+        records.add(f);
     }
 
     @Command
@@ -80,5 +90,16 @@ public class Notebook implements ShellDependent {
     @Override
     public void cliSetShell(Shell theShell) {
         this.parentShell = theShell;
+    }
+
+    @Command
+    public List<Record> find(@Param(name = "Find") String str) {
+        List<Record> result = new ArrayList<>();
+        for (Record r : records) {
+            if (r.contains(str)) {
+                result.add(r);
+            }
+        }
+    return result;
     }
 }
