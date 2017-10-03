@@ -1,0 +1,12 @@
+cp John Smith js@g.com "Tough Guy" 28 29 52
+cp Mike Davids md@g.com "Just Mike" 15 16 17
+cr "Buy milk" "2017.10.02 17:00"
+cr "Send bank details" "2017.10.02 19:00"
+cn "To do or not to to?"
+cn "shut off"
+cp J S j@g.com "T" 11
+cp M D d@g.com "J" 00
+cr "milk" "2017.11.02 17:00"
+cr "bank details" "2017.11.02 19:00"
+cn "To do?"
+cn "off"
