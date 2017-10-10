@@ -72,11 +72,24 @@ public class Notebook implements ShellDependent {
                             @Param(name = "Alarm Time") String alarm) {
         Alarm f = new Alarm();
         f.setText(text);
-        f.setAlarm(alarm);
+        f.setAlarmAsString(alarm);
 
         records.put(f.getId(), f);
     }
 
+    @Command
+    public List<Record> listExpired() {
+        List<Record> result = new ArrayList<>();
+        for (Record r: records.values()) {
+            if (r instanceof Expirable) {
+                Expirable e = (Expirable) r;
+                if (e.isExpired()) {
+                    result.add(r);
+                }
+            }
+        }
+        return result;
+    }
     @Command
     public void edit(@Param(name = "id") int id) throws IOException {
 //        for (int i = 0; i < records.size(); i++) {

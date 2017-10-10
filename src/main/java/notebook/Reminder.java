@@ -20,12 +20,12 @@ public class Reminder extends Note implements Expirable {
         LocalDateTime dt = LocalDateTime.parse(str, formatter);
         setTime(dt);
     }
-
+    @Command
     public LocalDateTime getTime() {
         return time;
     }
-
-    public void setTime(LocalDateTime time) {
+    @Command
+    public void setTime(@Param(name = "Date&Time") LocalDateTime time) {
         this.time = time;
     }
 
@@ -34,7 +34,7 @@ public class Reminder extends Note implements Expirable {
         return "Reminder{" +
                 "ID=" + getId() +
                 ", Task ='" + getText() + '\'' +
-                ", Time ='" + time + '\'' +
+                ", Time ='" + getTimeAsString() + '\'' +
                 '}';
     }
 
@@ -48,6 +48,7 @@ public class Reminder extends Note implements Expirable {
 
     @Override
     public boolean isExpired() {
-        return false;
+        LocalDateTime now = LocalDateTime.now();
+        return now.isAfter(time);
     }
 }
